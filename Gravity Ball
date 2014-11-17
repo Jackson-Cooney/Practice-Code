@@ -1,0 +1,25 @@
+float x,y;
+int sz;
+float velX,velY;
+float accX,accY;
+void setup(){
+  size(1100,800);
+  x=width/2;
+  y=height/3;
+  sz=50;
+  velX=0;
+  velY=2;
+  accX=0;
+  accY=.5;
+}
+void draw(){
+  background(0);
+  velX += accX;
+  velY += accY;
+  x += velX;
+  y += velY;
+  ellipse(x,y,sz,sz);
+  if(y>height-sz/2){
+    velY *= -1;
+  }
+}
