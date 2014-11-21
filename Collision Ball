@@ -1,0 +1,40 @@
+float sz, sz2;
+PVector loc, vel;
+PVector loc2, vel2;
+PVector mouse;
+void setup(){
+  size(1100,800);
+  loc = new PVector(random(sz/2, width - sz/2),random(sz/2, height - sz/2),0);
+  vel = new PVector(3,3,0);
+  loc2 = new PVector(random(sz2/2, width - sz2/2),random(sz2/2, height - sz2/2),0);
+  vel2 = new PVector(4,2,0);
+  mouse = new PVector(mouseX,mouseY,0);
+  sz = 150;
+  sz2 = 50;
+}
+void draw(){
+  background(0);
+  mouse = new PVector(mouseX,mouseY,0);
+  ellipse(loc.x,loc.y,sz,sz);
+  ellipse(loc2.x,loc2.y,sz2,sz2);
+  loc.add(vel);
+  loc2.add(vel2);
+  if(loc.x > width - sz/2 || loc.x < 0 + sz/2){
+    vel.x *= -1;
+  }
+  if(loc.y > height - sz/2 || loc.y < 0 + sz/2){
+    vel.y *= -1;
+  }
+  if(loc2.x > width - sz2/2 || loc2.x < 0 + sz2/2){
+    vel2.x *= -1;
+  }
+  if(loc2.y > height - sz2/2 || loc2.y < 0 + sz2/2){
+    vel2.y *= -1;
+  }
+  if(mouse.x > loc.x-(sz/2) && mouse.x < loc.x+(sz/2) && mouse.y > loc.y-(sz/2) && mouse.y < loc.y+(sz/2)){
+    vel.mult(-1);
+  }
+  if(mouse.x > loc2.x-(sz2/2) && mouse.x < loc2.x+(sz2/2) && mouse.y > loc2.y-(sz2/2) && mouse.y < loc2.y+(sz2/2)){
+    vel2.mult(-1);
+  }
+}
