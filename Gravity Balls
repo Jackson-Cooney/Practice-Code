@@ -1,0 +1,38 @@
+GravityBall[] bouncer = new GravityBall[100];
+void setup(){
+  size(1100,800);
+  for(int i = 0; i < bouncer.length; i++){
+    bouncer[i] = new GravityBall();
+  }
+}
+void draw(){
+  background(0);
+  for(int i = 0; i < bouncer.length; i++){
+    bouncer[i].display();
+    bouncer[i].move();
+    bouncer[i].bounce();
+  }
+}
+class GravityBall{
+  PVector loc,vel,acc;
+  float sz;
+  GravityBall(){
+    sz = 50;
+    loc = new PVector(random(width),random(height),0);
+    vel = new PVector(0,2,0);
+    acc = new PVector(0,.07,0);
+  }
+  void display(){
+    ellipse(loc.x,loc.y,sz,sz);
+  }
+  void move(){
+    loc.add(vel);
+    vel.add(acc);
+  }
+  void bounce(){
+    if(loc.y > height - sz/2){
+      loc.y = height - sz/2;
+      vel.y = -abs(vel.y);
+    }
+  }
+}
